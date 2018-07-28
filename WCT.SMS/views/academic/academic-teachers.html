@@ -1,0 +1,203 @@
+﻿
+
+
+
+            <section class="content-header">
+                <h1>
+                    Teacher Information
+                    <small>Preview</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="#">Academics</a></li>
+                    <li class="active">Teachers</li>
+                </ol>
+            </section>
+
+            <section class="content" ng-controller="teacherCrt" ng-init="getGenders();populate();">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="box box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">
+                                    Add Teachers
+                                </h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <form>
+
+                                    <div class="form-group">
+                                        <label for="usr">Teacher Name</label>
+                                        <input type="text" class="form-control" ng-model="editInProgresItem.Name">
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="usr">Email</label>
+                                        <input type="text" class="form-control" ng-model="editInProgresItem.Email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="usr">Gender</label>
+                                        <select ng-options="item.Id as item.Name group by item.group for item in Genders" ng-model="editInProgresItem.GenderId" class="form-control"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="usr">Date Of Birth</label>
+                                        <!--<input type="text" class="form-control" ng-model='(editInProgresItem.DOB| date : "dd/MM/yyyy")'>-->
+                                        <p class="input-group">
+                                            <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="editInProgresItem.DOB" is-open="popup2.opened" datepicker-options="options" ng-required="true" close-text="Close" />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </p>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="usr">Address</label>
+                                        <input type="text" class="form-control" ng-model="editInProgresItem.Address">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="usr">Phone</label>
+                                        <input type="text" class="form-control" ng-model="editInProgresItem.Phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="usr">Status</label>
+                                        <input type="checkbox" ng-model="editInProgresItem.IsActive">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="usr">Teacher Photo</label>
+                                        <input type="file" name="file" id="file" size="20">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="box-footer">
+                                <button type="button" ng-click="reset()" class="btn btn-default">Reset</button>
+                                <button type="button" ng-click="(editingInProgress==true?update() :add())" class="btn btn-info pull-right">{{(editingInProgress==true?"Update" :"Save")}}</button>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="col-md-8">
+                        <div class="box box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">
+                                    Teachers List
+                                </h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+
+                                <div class="box-body table-responsive">
+                                    <table class="table table-striped table-bordered dataTable">
+                                        <tbody>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Date Of Birth</th>
+                                                <th>Phone</th>
+                                                <th>Status</th>
+                                                <th class="pull-left">Action</th>
+                                            </tr>
+                                            <tr ng-repeat="teacher in Teachers">
+                                                <td>
+                                                    {{teacher.Name}}
+                                                </td>
+                                                <td>{{teacher.Email}}</td>
+                                                <td>{{teacher.DOB | date : "dd/MM/yyyy"}}</td>
+                                                <td>{{teacher.Phone}}</td>
+                                                <td>
+                                                    <a data-ng-hide="teacher.IsActive" href="#" class="btn btn-danger btn-xs">Deleted</a>
+                                                    <a data-ng-show="teacher.IsActive" href="#" class="btn btn-success btn-xs">Active</a>
+
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-default  btn-xs view" ng-click="viewTeacher(teacher);" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-eye"></i>&nbsp;</a>
+                                                    <a data-ng-click="editSwitch(teacher)" href="javascript:;" class="btn btn-primary  btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                                                    <a data-ng-click="delete(teacher.Id)" href="javascript:;" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Teacher Details</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+
+                                        <div class="col-md-3"><strong>Name:</strong></div>
+                                        <div class="col-md-9">{{SelectedTeacher.Name}}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3"><strong>Gender:</strong></div>
+                                        <div class="col-md-9">{{SelectedTeacher.Gender.Name}}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3"><strong>Date Of Birth:</strong></div>
+                                        <div class="col-md-9">{{SelectedTeacher.DOB | date : "dd/MM/yyyy"}}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3"><strong>Phone:</strong></div>
+                                        <div class="col-md-9">{{SelectedTeacher.Phone}}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3"><strong>Email Id:</strong></div>
+                                        <div class="col-md-9">{{SelectedTeacher.Email}}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3"><strong>Address:</strong></div>
+                                        <div class="col-md-9">{{SelectedTeacher.Address}}</div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+</section>
+       

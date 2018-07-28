@@ -1,0 +1,4 @@
+﻿Used
+ 1. Install-Package Swashbuckle -Version 5.4.0 
+ 2. .Net Framework 4.5.2
+ 3. Web API 5.2.3.0

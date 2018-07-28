@@ -1,0 +1,100 @@
+﻿<h1>{{Title}}</h1>
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    General Form Elements
+                    <small>Preview</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="#">Forms</a></li>
+                    <li class="active">General Elements</li>
+                </ol>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="container" style="width:auto;">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Edit Category</div>
+                                    <div class="panel-body">
+                                        <form class="form-horizontal" action="/action_page.php">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2" for="pwd">
+                                                            Category
+                                                        </label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="First Name" placeholder="Enter Category" name="pwd" ng-model="First Name" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="pull-right"><button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Save</button></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-5">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="box-body  table-responsive">
+                                    <table class="table table-striped table-bordered basicTable dataTable">
+                                        <tbody>
+                                            <tr>
+                                                <th>user</th>
+
+                                                <th>Action</th>
+
+                                            </tr>
+                                            <tr>
+
+
+
+                                                <td>OBC</td>
+                                                <td><a class="btn btn-primary btn-xs edit" id="1" href="#"><i class="fa fa-edit"></i> Edit</a> <a title="" class="btn btn-danger btn-xs delete" data-original-title="" data-placement="top"><i class="fa fa-trash-o"></i> Delete</a></td>
+                                            </tr>
+                                            <tr>
+
+
+                                                <td>Minority.</td>
+                                                <td><a class="btn btn-primary btn-xs edit" id="1" href="#"><i class="fa fa-edit"></i> Edit</a> <a title="" class="btn btn-danger btn-xs delete" data-original-title="" data-placement="top"><i class="fa fa-trash-o"></i> Delete</a></td>
+                                            </tr>
+
+
+
+                                            <tr>
+
+
+                                                <td>specail.</td>
+                                                <td><a class="btn btn-primary btn-xs edit" id="1" href="#"><i class="fa fa-edit"></i> Edit</a> <a title="" class="btn btn-danger btn-xs delete" data-original-title="" data-placement="top"><i class="fa fa-trash-o"></i> Delete</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gernal.</td>
+                                                <td><a class="btn btn-primary btn-xs edit" id="1" href="#"><i class="fa fa-edit"></i> Edit</a> <a title="" class="btn btn-danger btn-xs delete" data-original-title="" data-placement="top"><i class="fa fa-trash-o"></i> Delete</a></td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+
+
